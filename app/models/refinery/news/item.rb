@@ -7,11 +7,12 @@ module Refinery
 
       attr_accessor :locale # to hold temporarily
 
-      attr_accessible :title, :body, :content, :source, :publish_date, :expiration_date, :position
+      attr_accessible :title, :body, :content, :source, :publish_date, :expiration_date, :position, :image_id
       class Translation
         attr_accessible :locale
       end
 
+      belongs_to :image, :class_name => '::Refinery::Image'
       alias_attribute :content, :body
       validates :title, :content, :publish_date, :presence => true
 

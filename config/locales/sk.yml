@@ -48,5 +48,6 @@ sk:
         publish_date: Dátum zverejnenia
         expiration_date: Dátum expirácie
         source: Zdroj
+        image: Obrázok
     models:
       'refinery/news/item': Novinka
