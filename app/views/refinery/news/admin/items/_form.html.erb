@@ -1,4 +1,4 @@
-<%= form_for [refinery, :news, :admin, @item] do |f| %>
+
     <%= render "/refinery/admin/error_messages",
                :object => @item,
                :include_object_name => true %>
@@ -39,10 +39,6 @@
       <%= f.text_area :body, :rows => "20", :class => "wymeditor widest" %>
     </div>
 
-    <div class='field'>
-      <%= f.label :source %>
-      <%= f.text_field :source, :class => "larger widest" %>
-    </div>
 
     <%= render "/refinery/admin/form_actions",
                :f => f,
@@ -50,4 +46,4 @@
                :delete_title => t('admin.news.items.item.delete'),
                :delete_confirmation => t('shared.admin.delete.message', :title => @item.title) %>
 
-<% end %>
+

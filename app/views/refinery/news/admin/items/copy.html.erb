@@ -1,0 +1,3 @@
+<%= form_for [refinery, :news, :admin, @item], :url=> refinery.news_admin_items_path, :method=>"post" do |f| %>
+    <%= render "form", {:f=> f} %>
+<% end %>

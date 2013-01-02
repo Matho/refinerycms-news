@@ -13,6 +13,9 @@ Refinery::Core::Engine.routes.draw do
           collection do
             post :update_positions
           end
+          member do
+            get :copy
+          end
         end
       end
     end

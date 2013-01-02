@@ -5,6 +5,7 @@ sk:
         title: Novinky
         description: Poskytuje jednoduchú správu noviniek
     news:
+      copy_of: "KÓPIA "
       admin:
         items:
           actions:
@@ -15,6 +16,7 @@ sk:
             view_live_html: "Zobraziť novinku v novom okne"
             edit: "Editovať novinku"
             delete: "Zmazať novinku"
+            copy: "Duplikovať novinku"
             published: Uverejnená
           index:
             create: "Pridať novinku"

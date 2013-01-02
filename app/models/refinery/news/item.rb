@@ -20,6 +20,7 @@ module Refinery
 
       acts_as_indexed :fields => [:title, :body]
 
+      default_scope order('position DESC')
 
       def not_published? # has the published date not yet arrived?
         publish_date > Time.now
