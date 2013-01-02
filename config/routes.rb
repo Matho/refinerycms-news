@@ -9,7 +9,11 @@ Refinery::Core::Engine.routes.draw do
     namespace :admin, :path => 'refinery' do
       scope :path => 'news' do
         root :to => "items#index"
-        resources :items, :except => :show
+        resources :items, :except => :show do
+          collection do
+            post :update_positions
+          end
+        end
       end
     end
   end

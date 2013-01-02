@@ -7,7 +7,7 @@ module Refinery
 
       attr_accessor :locale # to hold temporarily
 
-      attr_accessible :title, :body, :content, :source, :publish_date, :expiration_date
+      attr_accessible :title, :body, :content, :source, :publish_date, :expiration_date, :position
       class Translation
         attr_accessible :locale
       end
@@ -19,7 +19,6 @@ module Refinery
 
       acts_as_indexed :fields => [:title, :body]
 
-      default_scope :order => "publish_date DESC"
 
       def not_published? # has the published date not yet arrived?
         publish_date > Time.now

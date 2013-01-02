@@ -7,6 +7,10 @@ sk:
     news:
       admin:
         items:
+          actions:
+            create_new: Pridať novinku
+            reorder: Preusporiadať novinky
+            reorder_done: Uložiť usporiadanie noviniek
           item:
             view_live_html: "Zobraziť novinku v novom okne"
             edit: "Editovať novinku"
