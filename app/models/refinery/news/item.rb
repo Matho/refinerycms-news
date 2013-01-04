@@ -7,12 +7,13 @@ module Refinery
 
       attr_accessor :locale # to hold temporarily
 
-      #has_many   :image_pages, :class_name => '::Refinery::ImagePage' , :as => :page
-      #has_many   :images, :through => :image_pages
+      has_many :image_pages, :as => :item, :order => 'position ASC'
+      has_many :images, :through => :image_pages, :order => 'position ASC'
+      has_many_page_images
+
       belongs_to :image, :class_name => '::Refinery::Image'
 
       attr_accessible :title, :body,  :source, :publish_date, :expiration_date, :position, :image_id, :teaser
-      #accepts_nested_attributes_for  :image_pages
 
       class Translation
         attr_accessible :locale

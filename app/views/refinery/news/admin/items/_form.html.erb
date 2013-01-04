@@ -33,48 +33,31 @@
   %>
 </div>
 
+
 <div class='field'>
   <div id='page-tabs' class='clearfix ui-tabs ui-widget ui-widget-content ui-corner-all'>
     <ul id='page_parts'>
-      <li class='ui-state-default ui-state-active' data-index='0'>
-        <a href="#page_part_teaser"><%= t('.teaser') %></a>
-      </li>
-      <li class='ui-state-default' data-index='1'>
-        <a href="#page_part_body"><%= t('.body') %></a>
-      </li>
-      <li class='ui-state-default' id="custom_image_tab">
-        <a href="#custom_tab_0">Obrázky</a>
-      </li>
+      <% [:teaser,:body,:images].each_with_index do |field, index| %>
+          <li class="ui-state-default <%= 'ui-state-active' if index == 0 %>">
+            <%= link_to "#{field.to_s.humanize}", "\##{field}" %>
+          </li>
+      <% end %>
     </ul>
 
     <div id='page_part_editors'>
-      <div class='page_part' id='page_part_teaser'>
-        <%= f.text_area :teaser, :rows => "20", :id=> "page_parts_attributes_0_body", :class => "wymeditor widest" %>
-      </div>
-      <div class='page_part' id='page_part_body'>
-        <%= f.text_area :body, :rows => "20", :id=>"page_parts_attributes_1_body", :class => "wymeditor widest" %>
-      </div>
-
-      <!--<div class='page_part' id='custom_tab_0'>
-        <div class='wym_skin_refinery page_part' id='page_image_picker'>
-          <div class='wym_area_top'>
-          <span class='clearfix label_inline_with_link'>
-            <a href="/refinery/images/insert?callback=image_added&amp;dialog=true&amp;height=510&amp;multiple=true&amp;width=950" id="add_image_link">Pridať obrázok</a>
-          </span>
+      <% [:teaser,:body].each do |field| %>
+          <div class='page_part' id="<%= field %>">
+            <%= f.text_area field, :rows => 20, :class => 'wymeditor widest' -%>
           </div>
-
-          <div class='wym_box field images_field'>
-            <ul id='page_images' class='clearfix'>
-              <li class='empty'>
-                <input id="page_images_attributes_0_id" name="item[images_attributes][0][id]" type="hidden" />
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div> -->
+      <% end %>
+      <div class='page_part' id="images">
+        <%= render partial: 'refinery/admin/pages/tabs/images', locals: {f: f} %>
+      </div>
     </div>
   </div>
 </div>
+
+
 <%= render "/refinery/admin/form_actions",
            :f => f,
            :continue_editing => true,
