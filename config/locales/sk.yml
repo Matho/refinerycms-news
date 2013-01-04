@@ -6,6 +6,8 @@ sk:
         description: Poskytuje jednoduchú správu noviniek
     news:
       copy_of: "KÓPIA "
+      created_at: Vytvorené
+      updated_at: Aktualizované
       admin:
         items:
           form:

@@ -3,7 +3,7 @@ module Refinery
     module Admin
       class ItemsController < ::Refinery::AdminController
 
-        crudify :'refinery/news/item', :xhr_paging => true
+        crudify :'refinery/news/item', :xhr_paging => true, :order=>"position DESC, created_at DESC"
 
         def copy
           @item = Refinery::News::Item.find(params[:id])

@@ -3,24 +3,29 @@ module Refinery
     class Item < Refinery::Core::BaseModel
       extend FriendlyId
 
-      translates :title, :body
+      translates :title, :body, :teaser
 
       attr_accessor :locale # to hold temporarily
 
-      attr_accessible :title, :body, :content, :source, :publish_date, :expiration_date, :position, :image_id, :teaser
+      #has_many   :image_pages, :class_name => '::Refinery::ImagePage' , :as => :page
+      #has_many   :images, :through => :image_pages
+      belongs_to :image, :class_name => '::Refinery::Image'
+
+      attr_accessible :title, :body,  :source, :publish_date, :expiration_date, :position, :image_id, :teaser
+      #accepts_nested_attributes_for  :image_pages
+
       class Translation
         attr_accessible :locale
       end
 
-      belongs_to :image, :class_name => '::Refinery::Image'
-      alias_attribute :content, :body
-      validates :title, :content, :publish_date, :presence => true
+      validates :title, :publish_date, :presence => true
+
 
       friendly_id :title, :use => [:slugged]
 
-      acts_as_indexed :fields => [:title, :body]
+      acts_as_indexed :fields => [:title, :body, :teaser]
 
-      default_scope order('position DESC')
+      default_scope order('position DESC, publish_date DESC')
 
       def not_published? # has the published date not yet arrived?
         publish_date > Time.now
@@ -32,6 +37,10 @@ module Refinery
 
       def prev
         self.class.previous(self).first
+      end
+
+      def contains_body?
+        body.present? && body != "<br>"
       end
 
       class << self
