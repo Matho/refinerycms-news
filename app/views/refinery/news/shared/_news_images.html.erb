@@ -1,0 +1,9 @@
+<% if @item.images.present? %>
+    <ul id='gallery' class="clearfix">
+      <% @item.images.each do |image| %>
+          <li>
+            <%= link_to image_tag(image.thumbnail("140x105#c").url), image.thumbnail("800x600").url , {:rel=> "group", :title => "" }%>
+          </li>
+      <% end %>
+    </ul>
+<% end %>
