@@ -25,7 +25,11 @@ module Refinery
 
       acts_as_indexed :fields => [:title, :body, :teaser]
 
-      default_scope order('position DESC, publish_date DESC')
+      default_scope order('position ASC, publish_date DESC')
+
+      def to_param
+        "#{id}-#{slug}"
+      end
 
       def not_published? # has the published date not yet arrived?
         publish_date > Time.now
