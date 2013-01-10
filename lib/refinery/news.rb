@@ -7,6 +7,7 @@ module Refinery
 
   module News
     require 'refinery/news/engine'
+    require 'refinery/news/extensions/pages_controller_extension.rb'
 
     class << self
       attr_writer :root
