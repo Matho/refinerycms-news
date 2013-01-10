@@ -14,6 +14,11 @@ module Refinery
           plugin.url = proc { Refinery::Core::Engine.routes.url_helpers.news_admin_items_path }
         end
       end
+      
+      config.to_prepare do
+        require 'refinerycms-pages'
+        Refinery::PagesController.send :include, Refinery::News::Extensions::PagesController
+      end
 
       config.after_initialize do
         Refinery.register_engine(Refinery::News)
