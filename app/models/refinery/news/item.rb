@@ -26,7 +26,7 @@ module Refinery
 
       acts_as_indexed :fields => [:title, :body, :teaser]
 
-      default_scope order('position ASC, publish_date DESC')
+      default_scope order('publish_date DESC')
 
       def to_param
         "#{id}-#{slug}"
