@@ -11,6 +11,12 @@ module Refinery
           @item.title = ::I18n.t('refinery.news.copy_of') + @item.title
         end
 
+        protected
+
+        def item_params
+          params.require(:item).permit(:title, :body,  :source, :publish_date, :expiration_date, :position, :image_id, :teaser)
+        end
+
       end
     end
   end

@@ -7,29 +7,27 @@ module Refinery
 
       attr_accessor :locale # to hold temporarily
 
-      has_many :image_pages, :as => :item, :order => 'position ASC'
-      has_many :images, :through => :image_pages, :order => 'position ASC'
+      has_many :image_pages, :as => :item
+      has_many :images, :through => :image_pages
       has_many_page_images
 
       belongs_to :image, :class_name => '::Refinery::Image'
 
-      attr_accessible :title, :body,  :source, :publish_date, :expiration_date, :position, :image_id, :teaser
-
       class Translation
-        attr_accessible :locale
+
       end
 
       validates :title, :publish_date, :presence => true
 
 
-      friendly_id :title, :use => [:slugged]
+      friendly_id :title, :use => [:slugged, :finders]
 
       acts_as_indexed :fields => [:title, :body, :teaser]
 
-      default_scope order('publish_date DESC')
+      default_scope -> { order('publish_date DESC') }
 
       def to_param
-        "#{id}-#{slug}"
+        "#{id}"
       end
 
       def not_published? # has the published date not yet arrived?
