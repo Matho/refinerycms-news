@@ -5,7 +5,7 @@ module Refinery
 
         def self.included(base)
           base.class_eval do
-            around_filter :wrap_home_action, :only => :home
+            around_action :wrap_home_action, :only => :home
 
 
             def wrap_home_action

@@ -1,4 +1,4 @@
-class AddPositionToNewsItems < ActiveRecord::Migration
+class AddPositionToNewsItems < ActiveRecord::Migration[4.2]
   def change
     add_column Refinery::News::Item.table_name, :position, :integer
   end
